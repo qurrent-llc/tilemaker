@@ -1,19 +1,17 @@
 # Changelog
 
-## [unreleased]
-
-*The next release of tilemaker will be 2.0.*
+## [2.0.0] - 2021-07-09
 
 ### Added
-- Optionally use on-disk workspace with new --store/--init-store options (@kleunen)
-- Run-time --compact switch for consecutive IDs (@kleunen)
+- Optionally use on-disk workspace with new --store option (@kleunen)
+- Load .pbf in parallel (@kleunen)
 - Static executable build for github CI (@kleunen)
-- Generate .pbf index file with --index switch (@kleunen)
 - Mac and Windows CI builds (@kleunen)
 - Write metadata.json for file output (@kleunen)
 - Merge tile contents when using --merge switch
 - Mapsplit (.msf) source data support
 - `obj:MinZoom(z)` to set the minimum zoom at which a feature will be rendered
+- `obj:Centroid` to get the central lat/lon of an OSM object
 - `filter_below` to skip small areas at low zooms
 - Make layer name available in shapefile `attribute_function`
 - Set minimum zoom at which attributes are written
@@ -25,12 +23,16 @@
 - Use a shared key/value dictionary across OutputObjects to reduce memory usage (@kleunen)
 
 ### Changed
+- C++14 required
 - Remove Lua scale functions now that we return metres
-- Improve OpenMapTiles tag processing (@leonardehrenfried, @typebrook, @systemed)
+- Improve OpenMapTiles tag processing (@leonardehrenfried, @typebrook, @systemed, @QuentinC, @keichan34)
+- Use OpenMapTiles processing as default in tilemaker directory
 - Change OpenMapTiles minzoom to 0
+- Default simplify_ratio to 2
 - Ignore Lake Saimaa and USFS National Forest complex polygons in OpenMapTiles script
 - Rewrite linestring/polygon combining, with zoom level control (`combine_below` and `combine_polygons_below`)
 - Use boost::geometry::intersection for clipping (faster than clipper)
+- New simplify code (@kleunen)
 - Use boost::asio::thread_pool for tile generation (@kleunen)
 - Fallback to valid polygons if simplification produces invalid ones
 - Consistently use 1TBS in source
@@ -41,6 +43,7 @@
 - Don't filter out ABCA areas (@rdsa)
 - Don't break with old versions of sqlite
 - Don't generate tiles outside bounding box (@kleunen)
+- Dissolve problematic geometries (@kleunen)
 - Assign multipolygon inners to correct outers, including multiple way inners
 - Significant performance improvements (@kleunen)
 - Support nodes in LayerAsCentroid

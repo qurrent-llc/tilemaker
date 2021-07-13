@@ -4,6 +4,8 @@ Tilemaker creates vector tiles (in Mapbox Vector Tile format) from an .osm.pbf p
 
 Vector tiles are used by many in-browser/app renderers, and can also power server-side raster rendering. They enable on-the-fly style changes and greater interactivity, while imposing less of a storage burden. You can output them to individual files, or to a SQLite (.mbtiles) database.
 
+See an example of a vector tile map produced by tilemaker at [tilemaker.org](https://tilemaker.org).
+
 ![Continuous Integration](https://github.com/systemed/tilemaker/workflows/Continuous%20Integration/badge.svg)
 
 ## Installing
@@ -27,12 +29,10 @@ For detailed installation instructions for your operating system, see [INSTALL.m
 
 ## Out-of-the-box setup
 
-Tilemaker comes with configuration files compatible with the popular [OpenMapTiles](https://openmaptiles.org) schema, and a demonstration map server. You'll run tilemaker to make vector tiles from your `.osm.pbf` source data. To create the tiles:
+Tilemaker comes with configuration files compatible with the popular [OpenMapTiles](https://openmaptiles.org) schema, and a demonstration map server. You'll run tilemaker to make vector tiles from your `.osm.pbf` source data. To create the tiles, run this from the tilemaker directory:
 
     tilemaker --input /path/to/your/input.osm.pbf \
-        --output /path/to/your/output.mbtiles \
-        --config resources/config-openmaptiles.json \
-        --process resources/process-openmaptiles.lua
+        --output /path/to/your/output.mbtiles
 
 If you want to include sea tiles, then create a directory called `coastline` in the same place you're running tilemaker from, and then save the files from https://osmdata.openstreetmap.de/download/water-polygons-split-4326.zip in it, such that tilemaker can find a file at `coastline/water_polygons.shp`.
 
@@ -76,7 +76,7 @@ You might use tilemaker if:
 But don't use tilemaker if:
 
 * You want someone else to create and host the tiles for you
-* You want the entire planet or another very large area
+* You want the entire planet
 * You want continuous updates with the latest OSM data
 
 ## Contributing
